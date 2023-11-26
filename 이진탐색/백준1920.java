@@ -33,7 +33,6 @@ public class 백준1920 {
 
         for (int i = 0; i < M; i++) {
             int target = arr2[i];
-            System.out.println("target" + target);
             gogo(0, N - 1, target);
         }
 
