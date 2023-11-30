@@ -21,3 +21,5 @@ function solution(players, callings) {
     }
     return players;
 }
+
+

@@ -1,27 +1,31 @@
 package CodingTest.백트래킹;
 
+/*
+한 절이라도 false false가 나올수 밖에 없는 상황이면 0 아니면 1
+
+ */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class 백준11277 {
-    static int N, M;
-    static boolean[] arr;
-    static int[][] arr2;
-    static int temp1, temp2;
-    static boolean[] visited;
+    static int N, M; // N은 변수의 개수 , M은 절의 개수
+    static boolean[] arr; // N개의 불리안 변수를 담을것 근데 숫자로 담을까
+    static int[][] arr2; // 절을 담아두는 변수
+    static int temp1, temp2; // 앞의 변수 뒤에 변수 저장
+    static int temp1T, temp2T;
     static int count = 0;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken()); // 변수의 개수
+        M = Integer.parseInt(st.nextToken()); // 절의 개수
 
-        visited = new boolean[N + 1];
-        arr = new boolean[N + 1];
+        arr = new boolean[N + 1]; // 1~N인덱스로 저장
         arr2 = new int[M][2];
+
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < 2; j++) {
@@ -29,48 +33,40 @@ public class 백준11277 {
             }
         }
 
-        Back();
-        System.out.println(count);
+        Back(1);
+        // 저렇게 꺼내고 그냥 count를 뽑아냈는데 오류가 나옴
+        // count가 1이상으로 뽑히는 경우가 존재하는듯 고쳐야할 필요성이있을수도..
 
+        if (count > 0) {
+            System.out.println(1);
+        } else {
+            System.out.println(0);
+
+        }
     }
 
-    static void Back() {
-        for (int i = 1; i < N + 1; i++) {
-            if (visited[i] != true) {
-                visited[i] = true;
-                arr[i] = true;
-                for (int j = 0; j < M; j++) {
-                    temp1 = arr2[j][0];
-                    temp2 = arr2[j][1];
-
-                    if (temp1 < 0 && temp2 < 0) {
-                        if (!arr[Math.abs(temp1)] == false && !arr[Math.abs(temp2)] == false) {
-                            break;
-                        }
-                    } else if (temp1 < 0 && temp2 > 0) {
-                        if (!arr[Math.abs(temp1)] == false && arr[temp2] == false) {
-                            break;
-                        }
-                    } else if (temp1 > 0 && temp2 < 0) {
-                        if (arr[temp1] == false && !arr[Math.abs(temp2)] == false) {
-                            break;
-                        }
-                    } else {
-                        if (arr[temp1] == false && arr[temp2] == false) {
-                            break;
-                        }
-                    }
-                    if (j == M - 1) {
-                        count = 1;
-                        return;
-                    }
+    static void Back(int index) {
+        if (index == N + 1) {
+            for (int k = 0; k < M; k++) {
+                temp1 = arr2[k][0];
+                temp2 = arr2[k][1];
+                boolean value1 = (temp1 > 0) ? arr[temp1] : !arr[-temp1];
+                boolean value2 = (temp2 > 0) ? arr[temp2] : !arr[-temp2];
+                if (!(value1 || value2)) {
+                    return;
                 }
-
-                Back();
-                arr[i] = false;
-                visited[i] = false;
             }
+            count++;
+            return;
         }
-        return;
+
+        if (count != 0) {
+            return;
+        }
+
+        arr[index] = true;
+        Back(index + 1);
+        arr[index] = false;
+        Back(index + 1);
     }
 }
