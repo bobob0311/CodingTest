@@ -1,3 +1,5 @@
+package CodingTest.BFS;
+
 // DFS와 BFS로 탐색한 결과를 출력하는 프로그램을 작성
 
 // 정점의 개수 (1<=N<=1,000) 

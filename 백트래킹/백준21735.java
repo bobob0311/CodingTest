@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+//21735
+
 /*
 앞마당의 길이 N
 위치 1 ~ N까지 눈

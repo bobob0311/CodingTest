@@ -1,3 +1,5 @@
+package CodingTest.BFS;
+
 /*
  N by M 행렬
  0은 이동 가능 1은 벽

@@ -1,3 +1,5 @@
+package CodingTest.BFS;
+
 // N 수빈위치
 // K 동생위치 
 // 1초 후에 X-1   X+1    2 * X 3가지 케이스 가능
