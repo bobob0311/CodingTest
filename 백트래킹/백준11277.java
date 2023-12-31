@@ -1,4 +1,4 @@
-package CodingTest.백트래킹;
+package 백트래킹;
 
 /*
 2-CNF 식은 절 즉 괄호로 묶인식은 OR

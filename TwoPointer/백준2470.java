@@ -28,7 +28,7 @@
 2. 비슷한 접근이라도 계산의 횟수를 더 줄여줄수있는 방법은 있다.
  */
 
-package CodingTest.TwoPointer;
+package TwoPointer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

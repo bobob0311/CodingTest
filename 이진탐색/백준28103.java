@@ -1,4 +1,4 @@
-package CodingTest.이진탐색;
+package 이진탐색;
 
 //병신같은 문제 병신같은 문제 개 병신 같은 문제
 

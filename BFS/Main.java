@@ -1,4 +1,4 @@
-package CodingTest.BFS;
+package BFS;
 
 import java.util.*;
 import java.io.*;

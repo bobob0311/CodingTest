@@ -1,4 +1,4 @@
-package CodingTest.TwoPointer;
+package TwoPointer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

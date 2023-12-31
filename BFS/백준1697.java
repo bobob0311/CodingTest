@@ -1,4 +1,4 @@
-package CodingTest.BFS;
+package BFS;
 
 // N 수빈위치
 // K 동생위치 

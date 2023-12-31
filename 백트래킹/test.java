@@ -1,4 +1,4 @@
-package CodingTest.백트래킹;
+package 백트래킹;
 
 public class test {
     static boolean[] arr = new boolean[5];

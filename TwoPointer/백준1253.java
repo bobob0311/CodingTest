@@ -1,4 +1,4 @@
-package CodingTest.TwoPointer;
+package TwoPointer;
 
 // 그냥 어거지 느낌인데 ㅎㅎ;;;
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-package CodingTest.백트래킹;
+package 백트래킹;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
