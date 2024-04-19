@@ -1,4 +1,4 @@
-package problem;
+package 플로이드;
 
 import java.util.*;
 import java.io.*;

@@ -1,4 +1,4 @@
-package problem;
+package 플로이드;
 
 /*
 가중치가 없는 방향 그래프 G

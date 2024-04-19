@@ -36,6 +36,7 @@ public class 백준1149 {
             arr[i][1] = Math.min(arr[i - 1][0], arr[i - 1][2]) + green;
             arr[i][2] = Math.min(arr[i - 1][0], arr[i - 1][1]) + blue;
         }
+
         int temp = 1000001;
         for (int i = 0; i < 3; i++) {
             if (temp > arr[N][i]) {
