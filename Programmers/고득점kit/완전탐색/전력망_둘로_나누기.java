@@ -37,7 +37,7 @@ class Solution {
         Queue<Integer> que = new LinkedList<>();
 
         que.add(1);
-        int count = 0;
+        int count = 0;  
         visited[1] = true;
 
         while (!que.isEmpty()) {
