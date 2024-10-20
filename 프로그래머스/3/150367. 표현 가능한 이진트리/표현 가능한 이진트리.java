@@ -27,6 +27,11 @@ class Solution {
                 }
                 digit++;
             }
+            if(nowStr.length() ==1){
+                answer[i] = 1;
+                continue;
+            }
+            
             
             while(tempNum != nowStr.length()){
                 nowStr = "0" + nowStr;
@@ -60,7 +65,7 @@ class Solution {
         if(chk){
             return;
         }
-        if(maxIdx <= minIdx){
+        if(maxIdx == minIdx){
             if(upChar=='1'){
                 return;
             }else{
