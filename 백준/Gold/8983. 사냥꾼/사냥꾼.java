@@ -45,13 +45,23 @@ public class Main{
         for(int i = 0; i<N; i++){
             int nowX = arr[i][0];
             int nowY = arr[i][1];
-            if(idx + 1 < M){
-                if(Math.abs(pos[idx+1] - nowX) < Math.abs(pos[idx] - nowX)){
-                    idx++;
-                } 
-            }
             
-            int x = pos[idx];
+            int left = 0;
+            int right = M - 1;
+            while (left < right) {
+                int mid = (left + right) / 2;
+                if (pos[mid] < nowX) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
+            }
+
+            // 가장 가까운 사대와 거리 비교
+            int x = pos[left];
+            if (left > 0 && Math.abs(pos[left - 1] - nowX) < Math.abs(x - nowX)) {
+                x = pos[left - 1];
+            }
                 
             if(Math.abs(x - nowX) + nowY <= L){
                 cnt++;
