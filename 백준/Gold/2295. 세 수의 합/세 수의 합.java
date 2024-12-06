@@ -1,34 +1,58 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int[] arr = new int[N];
-        for (int i = 0; i < N; i++)arr[i] = sc.nextInt();
-        List<Integer> sum = new ArrayList<>();
-        for (int i = 0 ; i < N ; i++){
-            for (int j = 0 ; j < N; j++){
-                sum.add(arr[i] + arr[j]);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+       
+        int len = Integer.parseInt(br.readLine());
+        int[] arr = new int[len];
+        
+        for (int i = 0; i < len; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+        
+        Arrays.sort(arr);
+
+        // 두 수의 합을 저장할 배열
+        int[] sum = new int[arr.length * (arr.length)];
+        int idx = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                sum[idx++] = arr[i] + arr[j];
             }
         }
-        Arrays.sort(arr);
-        Collections.sort(sum);
+        Arrays.sort(sum);
 
-        for (int i = N-1; i>=0; i--){
-            for (int j = N-1; j>=0; j--){
-                int minus = arr[i] - arr[j];
-
-                if (Collections.binarySearch(sum,minus)>=0){
-                    System.out.println(arr[i]);
-                    return;
+        int answer = 0;
+        for (int i = arr.length - 1; i >= 0; i--) { // 큰 값부터 탐색
+            for (int j = 0; j < i; j++) { // 작은 값과 차이를 계산
+                if (binarySearch(sum, arr[i] - arr[j])) {
+                    answer = Math.max(answer, arr[i]);
+                    break;
                 }
             }
         }
+
+        System.out.println(answer);
+    }
+
+    // 이진 탐색 구현
+    static boolean binarySearch(int[] arr, int value) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start <= end) {
+            int mid = (start + end) / 2; // 올바른 mid 계산
+            if (arr[mid] < value) {
+                start = mid + 1;
+            } else if (arr[mid] > value) {
+                end = mid - 1;
+            } else {
+                return true; // 값이 존재하면 true 반환
+            }
+        }
+        return false; // 찾지 못한 경우 false 반환
     }
 }
