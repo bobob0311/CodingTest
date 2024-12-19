@@ -12,38 +12,39 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         chk = new boolean[N];
         map = new int[N][N];
-
         StringTokenizer st;
+
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
+
             for (int j = 0; j < N; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
         dfs(N, 0, 0);
         System.out.println(min);
+
     }
 
-    public static void dfs(int N, int idx, int cnt) {
+    public static void dfs(int N, int next, int cnt) {
         if (cnt == N / 2) {
             min = Math.min(min, calc(N));
             return;
         }
-        if (idx >= N)
-            return; 
-
-
-        chk[idx] = true;
-        dfs(N, idx + 1, cnt + 1);
-
-
-        chk[idx] = false;
-        dfs(N, idx + 1, cnt);
+        if(next >=N) return;
+        
+        for (int i = next; i < N; i++) {
+            if (!chk[i]) {
+                chk[i] = true;
+                dfs(N, i + 1, cnt + 1);
+                chk[i] = false;
+            }
+        }
     }
 
     public static int calc(int N) {
-        int sum1 = 0, sum2 = 0;
+        int sum1 = 0;
+        int sum2 = 0;
 
         for (int i = 0; i < N; i++) {
             for (int j = i + 1; j < N; j++) {
@@ -54,6 +55,7 @@ public class Main {
                 }
             }
         }
+
         return Math.abs(sum1 - sum2);
     }
 }
