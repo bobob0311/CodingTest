@@ -21,6 +21,7 @@ public class Main {
         StringTokenizer st;
         arr = new int[21][21][21];
         arr[0][0][0] = 1;
+        StringBuilder sb=new StringBuilder();
 
         while (true) {
             st = new StringTokenizer(br.readLine());
@@ -33,7 +34,16 @@ public class Main {
             }
 
             int cnt = w(a, b, c);
-            System.out.printf("w(%d, %d, %d) = %d%n", a, b, c, cnt);
+            sb.append("w(")
+                    .append(a)
+                    .append(", ")
+                    .append(b)
+                    .append(", ")
+                    .append(c)
+                    .append(") = ")
+                    .append(cnt);
+            System.out.println(sb);
+            sb.setLength(0);
         }
     }
 
