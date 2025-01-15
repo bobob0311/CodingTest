@@ -13,8 +13,8 @@ public class Main {
         int target = Integer.parseInt(st.nextToken());
         que.add(new int[] { start, 0 });
 
-        int[] answer = new int[150001];
-        boolean[] chk = new boolean[150001];
+        int[] answer = new int[100001];
+        boolean[] chk = new boolean[100001];
 
         while (!que.isEmpty()) {
             int[] nowArr = que.poll();
@@ -30,12 +30,12 @@ public class Main {
                 que.add(new int[] { now - 1, nowCnt + 1 });
                 answer[now - 1] = now;
             }
-            if (now + 1 <= 150000 && !chk[now + 1]) {
+            if (now + 1 <= 100000 && !chk[now + 1]) {
                 chk[now + 1] = true;
                 que.add(new int[] { now + 1, nowCnt + 1 });
                 answer[now + 1] = now;
             }
-            if (now * 2 <= 150000 && !chk[now * 2]) {
+            if (now * 2 <= 100000 && !chk[now * 2]) {
                 chk[now * 2] = true;
                 que.add(new int[] { now * 2, nowCnt + 1 });
                 answer[now * 2] = now;
