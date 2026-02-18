@@ -30,33 +30,26 @@ public class Main {
             }
         }
 
-        int[][] dp = new int[N][(1 << N)];
+        int size = 1 << N;
+        int[] dp = new int[size];
+        int INF = Integer.MAX_VALUE/2;
+        Arrays.fill(dp,INF);
+        dp[0] = 0;
 
-        int MAXVALUE = Integer.MAX_VALUE/2;
+        for(int i = 0; i<size; i++){
+            int person = Integer.bitCount(i);
 
-        for(int i = 0; i<N; i++){
-                Arrays.fill(dp[i],MAXVALUE);
+            if(person >=N) continue;
 
-        }
-        for(int i = 0; i<N; i++){
-            dp[0][1<<i] = jobs[0][i];
-        }
-
-        // i번째 인부가
-        for(int i = 1; i<N; i++) {
-            // j번째 일을 할때
-            for (int j = 0; j < N; j++) {
-                // 이전까지의 선택
-                for (int visit = 0; visit < (1 << N); visit++) {
-                    int nextVisit = visit | (1 << j);
-
-                    dp[i][nextVisit] = Math.min(dp[i - 1][visit] + jobs[i][j], dp[i][nextVisit]);
-
+            for(int job = 0; job<N; job++){
+                if((i & (1<<job)) ==0){
+                    int next = i | (1<<job);
+                    dp[next] = Math.min(dp[next], dp[i] + jobs[person][job]);
                 }
             }
         }
 
-        System.out.println(dp[N-1][(1<<N)-1]);
+        System.out.println(dp[(1<<N) -1]);
 
 
     }
