@@ -2,10 +2,9 @@ import java.util.*;
 
 class Solution {
 
-    static int N, M, K;
-    static int startX, startY, endX, endY;
+    static int N, M;
+    static int endX, endY;
 
-    // 먼저 사전식으로 나열하고 dx, dy도 그거에 맞게 변경
     static String[] dir = {"d", "l", "r", "u"};
     static int[] dx = {1, 0, 0, -1};
     static int[] dy = {0, -1, 1, 0};
@@ -13,28 +12,21 @@ class Solution {
     public String solution(int n, int m, int x, int y, int r, int c, int k) {
         N = n;
         M = m;
-        K = k;
-        
-        startX = x;
-        startY = y;
+
+        int nowX = x;
+        int nowY = y;
         endX = r;
         endY = c;
-        
-        int nowX = startX;
-        int nowY = startY;
 
         int minDist = getDistance(nowX, nowY, endX, endY);
 
+        if (minDist > k) {
+            return "impossible";
+        }
 
-        
-        if(!isCanDest(minDist,K)) return "impossible";
-//         if (minDist > k) {
-//             return "impossible";
-//         }
-
-//         if ((k - minDist) % 2 != 0) {
-//             return "impossible";
-//         }
+        if ((k - minDist) % 2 != 0) {
+            return "impossible";
+        }
 
         StringBuilder answer = new StringBuilder();
 
@@ -48,9 +40,9 @@ class Solution {
                 }
 
                 int remain = k - step - 1;
-                int endDist = getDistance(nextX, nextY, endX, endY);
+                int distanceToEnd = getDistance(nextX, nextY, endX, endY);
 
-                if (isCanDest(endDist,remain)) {
+                if (distanceToEnd <= remain && (remain - distanceToEnd) % 2 == 0) {
                     answer.append(dir[i]);
                     nowX = nextX;
                     nowY = nextY;
@@ -60,13 +52,6 @@ class Solution {
         }
 
         return answer.toString();
-    }
-    
-    // 현재 최소 남은 거리 , 현재 K의 남은수  
-    static boolean isCanDest(int dist, int remain){
-        // 사용할 수 있는 칸으로 갈 수 가 없는 경우 
-        // 남은게 짝수가 아니라 구현할 수 없는 경우 
-        return (remain-dist) >= 0 && (remain-dist) % 2 == 0;
     }
 
     static int getDistance(int x1, int y1, int x2, int y2) {
